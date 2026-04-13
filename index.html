@@ -3,108 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
   <title>Huỳnh Ngọc Tài | Portfolio</title>
   <meta
     name="description"
     content="Portfolio cá nhân của Huỳnh Ngọc Tài - Sinh viên Công nghệ Phần Mềm, định hướng Developer và Project Manager."
   />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
+
+  <!-- Icons -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<!-- Background decor -->
-<div class="bg-blur bg-blur-1"></div>
-<div class="bg-blur bg-blur-2"></div>
 
-<!-- Header -->
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+
+<body>
+
+<!-- Background decorative blurs -->
+<div class="bg-blur bg-blur--1" aria-hidden="true"></div>
+<div class="bg-blur bg-blur--2" aria-hidden="true"></div>
+
+<!-- ================================================================
+     HEADER
+     ================================================================ -->
 <header class="header" id="header">
   <div class="container nav-container">
-    <a href="#home" class="logo">
-      <span class="logo-dot"></span>
+
+    <!-- Logo -->
+    <a href="#home" class="logo" aria-label="Về trang chủ">
+      <span class="logo-dot" aria-hidden="true"></span>
       Tai<span>Portfolio</span>
     </a>
 
-    <nav class="navbar" id="navbar">
-      <a href="#home" class="nav-link active">Trang chủ</a>
-      <a href="#about" class="nav-link">Giới thiệu</a>
-      <a href="#skills" class="nav-link">Kỹ năng</a>
+    <!-- Desktop navigation -->
+    <nav class="nav-menu" id="navMenu" aria-label="Điều hướng chính">
+      <a href="#home"     class="nav-link active">Trang chủ</a>
+      <a href="#about"    class="nav-link">Giới thiệu</a>
+      <a href="#skills"   class="nav-link">Kỹ năng</a>
       <a href="#projects" class="nav-link">Dự án</a>
-      <a href="#contact" class="nav-link">Liên hệ</a>
+      <a href="#contact"  class="nav-link">Liên hệ</a>
     </nav>
 
+    <!-- Action buttons -->
     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Chuyển chế độ sáng tối">
-        <i class="fa-solid fa-moon"></i>
+      <!-- Theme toggle -->
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Chuyển sang chế độ tối"
+        type="button"
+      >
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
       </button>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Mở menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Mở menu"
+        aria-expanded="false"
+        aria-controls="navMenu"
+        type="button"
+      >
+        <span class="menu-toggle__bar" aria-hidden="true"></span>
+        <span class="menu-toggle__bar" aria-hidden="true"></span>
+        <span class="menu-toggle__bar" aria-hidden="true"></span>
       </button>
     </div>
+
   </div>
 </header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#home" class="mobile-link">Trang chủ</a>
-  <a href="#about" class="mobile-link">Giới thiệu</a>
-  <a href="#skills" class="mobile-link">Kỹ năng</a>
-  <a href="#projects" class="mobile-link">Dự án</a>
-  <a href="#contact" class="mobile-link">Liên hệ</a>
-</div>
-
+<!-- ================================================================
+     MAIN CONTENT
+     ================================================================ -->
 <main>
-  <!-- Hero -->
-  <section class="hero section" id="home">
-    <div class="container hero-container">
+
+  <!-- ── HERO ───────────────────────────────────────────────────── -->
+  <section class="hero section" id="home" aria-label="Giới thiệu nhanh">
+    <div class="container hero-content">
+
+      <!-- Left: text -->
       <div class="hero-text reveal">
         <p class="hero-tag">Xin chào, tôi là</p>
+
         <h1>Huỳnh Ngọc Tài</h1>
+
         <h2>
-          Sinh viên Công nghệ Phần Mềm
+          Sinh viên Công nghệ Phần Mềm —
           <span class="typing-text" id="typingText">Developer</span>
         </h2>
+
         <p class="hero-desc">
           Tôi đang học tại Đại học Công nghệ Kỹ thuật TP.HCM, yêu thích xây dựng
           website, phát triển kỹ năng lập trình và hướng đến con đường
-          <strong>Developer</strong> cũng như <strong>Project Manager</strong>
-          trong tương lai.
+          <strong>Developer</strong> cũng như <strong>Project Manager</strong> trong tương lai.
         </p>
 
         <div class="hero-buttons">
           <a href="#projects" class="btn btn-primary">Xem dự án</a>
-          <a href="#contact" class="btn btn-outline">Liên hệ</a>
+          <a href="#contact"  class="btn btn-outline">Liên hệ</a>
         </div>
 
         <div class="hero-socials">
-          <a href="mailto:huynhngoctai205@gmail.com" aria-label="Email">
-            <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:huynhngoctai205@gmail.com" aria-label="Gửi email">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
           </a>
-          <a href="https://github.com/KickHuynh" target="_blank" aria-label="GitHub">
-            <i class="fa-brands fa-github"></i>
+          <a
+            href="https://github.com/KickHuynh"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub của Tài"
+          >
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
           </a>
-          <a href="https://www.facebook.com/ngoctai.205" target="_blank" aria-label="Facebook">
-            <i class="fa-brands fa-facebook"></i>
+          <a
+            href="https://www.facebook.com/ngoctai.205"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook của Tài"
+          >
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
           </a>
         </div>
       </div>
 
+      <!-- Right: profile card -->
       <div class="hero-card reveal delay-1">
         <div class="profile-card">
           <div class="avatar">
-            <img src="img/avt_HuynhNgocTai_aoDoan.png" alt="Ảnh đại diện Huỳnh Ngọc Tài">
+            <img
+              src="assets/img/avt_HuynhNgocTai_aoDoan.png"
+              alt="Ảnh đại diện Huỳnh Ngọc Tài"
+              loading="lazy"
+            />
           </div>
+
           <h3>Huỳnh Ngọc Tài</h3>
           <p>Software Engineering Student</p>
 
@@ -119,23 +165,26 @@
             </div>
             <div class="mini-item">
               <span class="mini-label">Định hướng</span>
-              <strong>Frontend & Web</strong>
+              <strong>Frontend &amp; Web</strong>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- About -->
-  <section class="about section" id="about">
+  <!-- ── ABOUT ──────────────────────────────────────────────────── -->
+  <section class="about section" id="about" aria-label="Giới thiệu bản thân">
     <div class="container">
+
       <div class="section-heading reveal">
         <p class="section-tag">Giới thiệu</p>
         <h2>Về bản thân tôi</h2>
       </div>
 
-      <div class="about-grid">
+      <div class="about-content">
+
         <div class="about-text card reveal">
           <p>
             Tôi là <strong>Huỳnh Ngọc Tài</strong>, sinh viên ngành
@@ -148,69 +197,79 @@
             quá trình học tập.
           </p>
           <p>
-            Mục tiêu hiện tại của tôi là trở thành một
-            <strong>Developer</strong> có nền tảng tốt, đồng thời rèn luyện thêm
-            kỹ năng quản lý, phối hợp và tổ chức công việc để phát triển theo
-            định hướng <strong>Project Manager</strong> trong tương lai.
+            Mục tiêu hiện tại của tôi là trở thành một <strong>Developer</strong>
+            có nền tảng tốt, đồng thời rèn luyện thêm kỹ năng quản lý, phối hợp
+            và tổ chức công việc để phát triển theo định hướng
+            <strong>Project Manager</strong> trong tương lai.
           </p>
         </div>
 
         <div class="about-info reveal delay-1">
           <div class="info-card card">
-            <i class="fa-solid fa-user-graduate"></i>
+            <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
             <h3>Học tập</h3>
             <p>Sinh viên Công nghệ Phần Mềm, tập trung vào lập trình web và phát triển dự án học tập.</p>
           </div>
 
           <div class="info-card card">
-            <i class="fa-solid fa-laptop-code"></i>
+            <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
             <h3>Định hướng</h3>
             <p>Phát triển kỹ năng frontend, JavaScript, responsive design và quy trình làm việc thực tế.</p>
           </div>
 
           <div class="info-card card">
-            <i class="fa-solid fa-diagram-project"></i>
+            <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
             <h3>Mục tiêu</h3>
             <p>Xây dựng nền tảng tốt để trở thành Developer và tiến xa hơn tới vai trò Project Manager.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section class="skills section" id="skills">
+  <!-- ── SKILLS ─────────────────────────────────────────────────── -->
+  <section class="skills section" id="skills" aria-label="Kỹ năng">
     <div class="container">
-      <div class="section-header">
-        <p class="section-subtitle">Kỹ năng</p>
-        <h2 class="section-title">Những công cụ và kỹ năng mình đang sử dụng</h2>
+
+      <div class="section-heading reveal">
+        <p class="section-tag">Kỹ năng</p>
+        <h2>Những công cụ và kỹ năng mình đang sử dụng</h2>
       </div>
 
-      <div class="skills-grid" id="skillsList"></div>
+      <!-- Populated dynamically by app.js -->
+      <div class="skills-grid" id="skillsList" aria-live="polite"></div>
+
     </div>
   </section>
 
-  <!-- Projects -->
-  <section class="projects section" id="projects">
+  <!-- ── PROJECTS ───────────────────────────────────────────────── -->
+  <section class="projects section" id="projects" aria-label="Dự án">
     <div class="container">
-      <div class="section-header">
-        <p class="section-subtitle">Dự án</p>
-        <h2 class="section-title">Một số sản phẩm mình đã thực hiện</h2>
+
+      <div class="section-heading reveal">
+        <p class="section-tag">Dự án</p>
+        <h2>Một số sản phẩm mình đã thực hiện</h2>
       </div>
 
-      <div class="projects-grid" id="projectsList"></div>
+      <!-- Populated dynamically by app.js -->
+      <div class="projects-grid" id="projectsList" aria-live="polite"></div>
+
     </div>
   </section>
 
-  <!-- Contact -->
-  <section class="contact section" id="contact">
+  <!-- ── CONTACT ────────────────────────────────────────────────── -->
+  <section class="contact section" id="contact" aria-label="Liên hệ">
     <div class="container">
+
       <div class="section-heading reveal">
         <p class="section-tag">Liên hệ</p>
         <h2>Kết nối với tôi</h2>
       </div>
 
-      <div class="contact-grid">
+      <div class="contact-layout">
+
+        <!-- Contact info -->
         <div class="contact-info card reveal">
           <h3>Thông tin liên hệ</h3>
           <p>
@@ -218,9 +277,9 @@
             lập trình web, dự án học tập và định hướng phát triển nghề nghiệp.
           </p>
 
-          <div class="contact-list">
+          <address class="contact-list">
             <div class="contact-item">
-              <i class="fa-solid fa-envelope"></i>
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
               <div>
                 <span>Email</span>
                 <a href="mailto:huynhngoctai205@gmail.com">huynhngoctai205@gmail.com</a>
@@ -228,60 +287,118 @@
             </div>
 
             <div class="contact-item">
-              <i class="fa-brands fa-github"></i>
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
               <div>
                 <span>GitHub</span>
-                <a href="https://github.com/KickHuynh" target="_blank">github.com/KickHuynh</a>
+                <a
+                  href="https://github.com/KickHuynh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >github.com/KickHuynh</a>
               </div>
             </div>
 
             <div class="contact-item">
-              <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-facebook" aria-hidden="true"></i>
               <div>
                 <span>Facebook</span>
-                <a href="https://www.facebook.com/ngoctai.205" target="_blank">facebook.com/ngoctai.205</a>
+                <a
+                  href="https://www.facebook.com/ngoctai.205"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >facebook.com/ngoctai.205</a>
               </div>
             </div>
-          </div>
+          </address>
         </div>
 
-        <div class="contact-info card reveal">
+        <!-- Contact form -->
+        <div class="contact-form-card card reveal delay-1">
           <h3>Gửi lời nhắn</h3>
-          <form class="contact-form" id="contactForm">
+
+          <form class="contact-form" id="contactForm" novalidate>
             <div class="form-group">
-              <input type="text" id="name" placeholder="Họ và tên" required />
+              <label for="name">Họ và tên</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Nguyễn Văn A"
+                autocomplete="name"
+                required
+              />
             </div>
+
             <div class="form-group">
-              <input type="email" id="email" placeholder="Email" required />
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@gmail.com"
+                autocomplete="email"
+                required
+              />
             </div>
+
             <div class="form-group">
-              <input type="text" id="subject" placeholder="Chủ đề" />
+              <label for="subject">Chủ đề</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Chủ đề lời nhắn"
+              />
             </div>
+
             <div class="form-group">
-              <textarea id="message" rows="6" placeholder="Nội dung lời nhắn" required></textarea>
+              <label for="message">Nội dung</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Nhập nội dung lời nhắn..."
+                required
+              ></textarea>
             </div>
+
             <button type="submit" class="btn btn-primary btn-full">Gửi lời nhắn</button>
-            <p class="form-message" id="formMessage"></p>
+
+            <!-- JS will populate this element -->
+            <p class="form-message" id="formMessage" aria-live="polite"></p>
           </form>
         </div>
+
       </div>
     </div>
   </section>
+
 </main>
 
-<!-- Footer -->
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
 <footer class="footer">
   <div class="container footer-container">
-    <p>© <span id="year"></span> Huỳnh Ngọc Tài. All Rights Reserved.</p>
-    <a href="#home" class="footer-top">Lên đầu trang</a>
+    <p>
+      &copy; <span id="currentYear"></span> Huỳnh Ngọc Tài. All Rights Reserved.
+    </p>
+    <a href="#home" class="footer-top">Lên đầu trang ↑</a>
   </div>
 </footer>
 
-<!-- Back to top -->
-<button class="back-to-top" id="backToTop" aria-label="Lên đầu trang">
-  <i class="fa-solid fa-arrow-up"></i>
+<!-- Back to top button -->
+<button
+  class="back-to-top"
+  id="backToTop"
+  aria-label="Lên đầu trang"
+  type="button"
+>
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </button>
 
-<link rel="stylesheet" href="css/style.css">
-<script src="js/app.js"></script></body>
+<!-- Scripts (type=module for ES import support) -->
+<script type="module" src="scripts/app.js"></script>
+
+</body>
 </html>

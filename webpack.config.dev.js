@@ -8,6 +8,7 @@ module.exports = merge(common, {
     liveReload: true,
     hot: true,
     open: true,
+    // Serve from project root so all relative paths (styles/, assets/) work
     static: ['./'],
   },
 });

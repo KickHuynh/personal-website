@@ -3,113 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Personal Website</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .admin-page {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+  <title>Admin — Portfolio Huỳnh Ngọc Tài</title>
 
-    .admin-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-      margin-bottom: 24px;
-    }
-
-    .admin-card h2 {
-      margin-bottom: 16px;
-    }
-
-    .admin-form {
-      display: grid;
-      gap: 14px;
-    }
-
-    .admin-form input,
-    .admin-form textarea,
-    .admin-form select {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #dcdcdc;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-
-    .admin-form textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .admin-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .admin-status {
-      margin-top: 10px;
-      font-weight: 600;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .admin-list {
-      display: grid;
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .admin-item {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 16px;
-      background: #f8fafc;
-    }
-
-    .admin-item h3 {
-      margin-bottom: 8px;
-      font-size: 18px;
-    }
-
-    .admin-meta {
-      font-size: 14px;
-      color: #475569;
-      margin-bottom: 10px;
-    }
-
-    .admin-item-actions {
-      margin-top: 12px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .admin-empty {
-      color: #64748b;
-    }
-  </style>
+  <!-- Styles (main variables + admin-specific) -->
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/admin.css" />
 </head>
+
 <body>
+
 <main class="admin-page">
-  <section class="admin-card" id="loginSection">
+
+  <!-- ── LOGIN ─────────────────────────────────────────────────── -->
+  <section class="admin-card" id="loginSection" aria-label="Đăng nhập admin">
     <h2>Đăng nhập Admin</h2>
-    <form id="loginForm" class="admin-form">
-      <input type="email" id="loginEmail" placeholder="Email admin" required />
-      <input type="password" id="loginPassword" placeholder="Mật khẩu" required />
+
+    <form id="loginForm" class="admin-form" novalidate>
+      <div>
+        <label for="loginEmail">Email admin</label>
+        <input
+          type="email"
+          id="loginEmail"
+          name="email"
+          placeholder="admin@example.com"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="loginPassword">Mật khẩu</label>
+        <input
+          type="password"
+          id="loginPassword"
+          name="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
       <button type="submit" class="btn btn-primary">Đăng nhập</button>
-      <p id="loginMessage" class="admin-status"></p>
+      <p id="loginMessage" class="admin-status" aria-live="polite"></p>
     </form>
   </section>
 
-  <section class="admin-card hidden" id="dashboardSection">
+  <!-- ── DASHBOARD HEADER ───────────────────────────────────────── -->
+  <section class="admin-card hidden" id="dashboardSection" aria-label="Thông tin admin">
     <div class="admin-actions">
       <h2>Admin Dashboard</h2>
       <button id="logoutBtn" class="btn btn-outline" type="button">Đăng xuất</button>
@@ -117,96 +57,160 @@
     <p id="adminWelcome"></p>
   </section>
 
-  <section class="admin-card hidden" id="projectSection">
+  <!-- ── PROJECTS ───────────────────────────────────────────────── -->
+  <section class="admin-card hidden" id="projectSection" aria-label="Quản lý dự án">
     <h2>Thêm Project</h2>
-    <form id="projectForm" class="admin-form">
-      <input type="text" id="projectTitle" placeholder="Tên dự án" required />
-      <textarea id="projectDescription" placeholder="Mô tả dự án" required></textarea>
-      <input type="text" id="projectTechStack" placeholder="Tech stack" />
-      <input type="text" id="projectGithubUrl" placeholder="GitHub URL" />
-      <input type="text" id="projectDemoUrl" placeholder="Demo URL" />
-      <input type="text" id="projectImageUrl" placeholder="Image URL" />
+
+    <form id="projectForm" class="admin-form" novalidate>
+      <div>
+        <label for="projectTitle">Tên dự án</label>
+        <input type="text" id="projectTitle" name="title" placeholder="Tên dự án" required />
+      </div>
+      <div>
+        <label for="projectDescription">Mô tả</label>
+        <textarea id="projectDescription" name="description" placeholder="Mô tả dự án" required></textarea>
+      </div>
+      <div>
+        <label for="projectTechStack">Tech stack</label>
+        <input type="text" id="projectTechStack" name="tech_stack" placeholder="React, Node.js, ..." />
+      </div>
+      <div>
+        <label for="projectGithubUrl">GitHub URL</label>
+        <input type="url" id="projectGithubUrl" name="github_url" placeholder="https://github.com/..." />
+      </div>
+      <div>
+        <label for="projectDemoUrl">Demo URL</label>
+        <input type="url" id="projectDemoUrl" name="demo_url" placeholder="https://..." />
+      </div>
+      <div>
+        <label for="projectImageUrl">Image URL</label>
+        <input type="url" id="projectImageUrl" name="image_url" placeholder="https://..." />
+      </div>
       <button type="submit" class="btn btn-primary">Thêm Project</button>
-      <p id="projectMessage" class="admin-status"></p>
+      <p id="projectMessage" class="admin-status" aria-live="polite"></p>
     </form>
 
-    <hr style="margin: 24px 0;" />
+    <hr class="admin-divider" />
 
     <div class="admin-actions">
       <h2>Danh sách Project</h2>
       <button id="loadProjectsBtn" class="btn btn-outline" type="button">Tải Project</button>
     </div>
-    <p id="projectListStatus" class="admin-status"></p>
+    <p id="projectListStatus" class="admin-status" aria-live="polite"></p>
     <div id="adminProjectsList" class="admin-list"></div>
   </section>
 
-  <section class="admin-card hidden" id="editProjectSection">
+  <!-- ── EDIT PROJECT ───────────────────────────────────────────── -->
+  <section class="admin-card hidden" id="editProjectSection" aria-label="Chỉnh sửa dự án">
     <h2>Sửa Project</h2>
-    <form id="editProjectForm" class="admin-form">
+
+    <form id="editProjectForm" class="admin-form" novalidate>
       <input type="hidden" id="editProjectId" />
-      <input type="text" id="editProjectTitle" placeholder="Tên dự án" required />
-      <textarea id="editProjectDescription" placeholder="Mô tả dự án" required></textarea>
-      <input type="text" id="editProjectTechStack" placeholder="Tech stack" />
-      <input type="text" id="editProjectGithubUrl" placeholder="GitHub URL" />
-      <input type="text" id="editProjectDemoUrl" placeholder="Demo URL" />
-      <input type="text" id="editProjectImageUrl" placeholder="Image URL" />
+      <div>
+        <label for="editProjectTitle">Tên dự án</label>
+        <input type="text" id="editProjectTitle" name="title" placeholder="Tên dự án" required />
+      </div>
+      <div>
+        <label for="editProjectDescription">Mô tả</label>
+        <textarea id="editProjectDescription" name="description" placeholder="Mô tả dự án" required></textarea>
+      </div>
+      <div>
+        <label for="editProjectTechStack">Tech stack</label>
+        <input type="text" id="editProjectTechStack" name="tech_stack" placeholder="React, Node.js, ..." />
+      </div>
+      <div>
+        <label for="editProjectGithubUrl">GitHub URL</label>
+        <input type="url" id="editProjectGithubUrl" name="github_url" placeholder="https://github.com/..." />
+      </div>
+      <div>
+        <label for="editProjectDemoUrl">Demo URL</label>
+        <input type="url" id="editProjectDemoUrl" name="demo_url" placeholder="https://..." />
+      </div>
+      <div>
+        <label for="editProjectImageUrl">Image URL</label>
+        <input type="url" id="editProjectImageUrl" name="image_url" placeholder="https://..." />
+      </div>
 
       <div class="admin-actions">
         <button type="submit" class="btn btn-primary">Cập nhật Project</button>
         <button type="button" id="cancelEditProjectBtn" class="btn btn-outline">Hủy</button>
       </div>
-
-      <p id="editProjectMessage" class="admin-status"></p>
+      <p id="editProjectMessage" class="admin-status" aria-live="polite"></p>
     </form>
   </section>
 
-  <section class="admin-card hidden" id="skillSection">
+  <!-- ── SKILLS ─────────────────────────────────────────────────── -->
+  <section class="admin-card hidden" id="skillSection" aria-label="Quản lý kỹ năng">
     <h2>Thêm Skill</h2>
-    <form id="skillForm" class="admin-form">
-      <input type="text" id="skillName" placeholder="Tên kỹ năng" required />
-      <input type="text" id="skillLevel" placeholder="Mức độ" />
-      <input type="text" id="skillCategory" placeholder="Danh mục" />
+
+    <form id="skillForm" class="admin-form" novalidate>
+      <div>
+        <label for="skillName">Tên kỹ năng</label>
+        <input type="text" id="skillName" name="name" placeholder="JavaScript" required />
+      </div>
+      <div>
+        <label for="skillLevel">Mức độ</label>
+        <input type="text" id="skillLevel" name="level" placeholder="Intermediate" />
+      </div>
+      <div>
+        <label for="skillCategory">Danh mục</label>
+        <input type="text" id="skillCategory" name="category" placeholder="Frontend" />
+      </div>
       <button type="submit" class="btn btn-primary">Thêm Skill</button>
-      <p id="skillMessage" class="admin-status"></p>
+      <p id="skillMessage" class="admin-status" aria-live="polite"></p>
     </form>
 
-    <hr style="margin: 24px 0;" />
+    <hr class="admin-divider" />
 
     <div class="admin-actions">
       <h2>Danh sách Skill</h2>
       <button id="loadSkillsBtn" class="btn btn-outline" type="button">Tải Skill</button>
     </div>
-    <p id="skillListStatus" class="admin-status"></p>
+    <p id="skillListStatus" class="admin-status" aria-live="polite"></p>
     <div id="adminSkillsList" class="admin-list"></div>
   </section>
 
-  <section class="admin-card hidden" id="editSkillSection">
+  <!-- ── EDIT SKILL ─────────────────────────────────────────────── -->
+  <section class="admin-card hidden" id="editSkillSection" aria-label="Chỉnh sửa kỹ năng">
     <h2>Sửa Skill</h2>
-    <form id="editSkillForm" class="admin-form">
+
+    <form id="editSkillForm" class="admin-form" novalidate>
       <input type="hidden" id="editSkillId" />
-      <input type="text" id="editSkillName" placeholder="Tên kỹ năng" required />
-      <input type="text" id="editSkillLevel" placeholder="Mức độ" />
-      <input type="text" id="editSkillCategory" placeholder="Danh mục" />
+      <div>
+        <label for="editSkillName">Tên kỹ năng</label>
+        <input type="text" id="editSkillName" name="name" placeholder="JavaScript" required />
+      </div>
+      <div>
+        <label for="editSkillLevel">Mức độ</label>
+        <input type="text" id="editSkillLevel" name="level" placeholder="Intermediate" />
+      </div>
+      <div>
+        <label for="editSkillCategory">Danh mục</label>
+        <input type="text" id="editSkillCategory" name="category" placeholder="Frontend" />
+      </div>
 
       <div class="admin-actions">
         <button type="submit" class="btn btn-primary">Cập nhật Skill</button>
         <button type="button" id="cancelEditSkillBtn" class="btn btn-outline">Hủy</button>
       </div>
-
-      <p id="editSkillMessage" class="admin-status"></p>
+      <p id="editSkillMessage" class="admin-status" aria-live="polite"></p>
     </form>
   </section>
 
-  <section class="admin-card hidden" id="messageSection">
+  <!-- ── MESSAGES ───────────────────────────────────────────────── -->
+  <section class="admin-card hidden" id="messageSection" aria-label="Danh sách lời nhắn">
     <div class="admin-actions">
       <h2>Danh sách lời nhắn</h2>
       <button id="loadMessagesBtn" class="btn btn-outline" type="button">Tải lời nhắn</button>
     </div>
-    <p id="messageStatus" class="admin-status"></p>
+    <p id="messageStatus" class="admin-status" aria-live="polite"></p>
     <div id="messagesList" class="admin-list"></div>
   </section>
+
 </main>
 
-<script src="js/admin.js"></script>
+<!-- Script (type=module for ES import support) -->
+<script type="module" src="scripts/admin.js"></script>
+
 </body>
 </html>
