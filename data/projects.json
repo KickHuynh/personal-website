@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Personal Portfolio Website",
+    "description": "Website portfolio cá nhân với frontend thuần HTML/CSS/JS và backend Node.js + MySQL. Có admin panel để quản lý projects, skills và messages.",
+    "tech_stack": "HTML, CSS, JavaScript, Node.js, Express, MySQL",
+    "github_url": "https://github.com/KickHuynh/personal-website",
+    "demo_url": null,
+    "image_url": null
+  },
+  {
+    "id": 2,
+    "title": "AudioGear E-Commerce",
+    "description": "Ứng dụng thương mại điện tử bán thiết bị âm thanh với đầy đủ chức năng: xác thực người dùng, giỏ hàng, quản lý đơn hàng và trang quản trị.",
+    "tech_stack": "Java, Spring Boot, MySQL, React",
+    "github_url": "https://github.com/KickHuynh/AudioGear-ECommerce",
+    "demo_url": null,
+    "image_url": null
+  }
+]

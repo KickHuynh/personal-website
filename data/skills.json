@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "HTML & CSS",
+    "level": "Intermediate",
+    "category": "Frontend"
+  },
+  {
+    "id": 2,
+    "name": "JavaScript",
+    "level": "Intermediate",
+    "category": "Frontend"
+  },
+  {
+    "id": 3,
+    "name": "Responsive Design",
+    "level": "Intermediate",
+    "category": "Frontend"
+  },
+  {
+    "id": 4,
+    "name": "Java",
+    "level": "Intermediate",
+    "category": "Backend"
+  },
+  {
+    "id": 5,
+    "name": "Spring Boot",
+    "level": "Beginner",
+    "category": "Backend"
+  },
+  {
+    "id": 6,
+    "name": "Node.js",
+    "level": "Beginner",
+    "category": "Backend"
+  },
+  {
+    "id": 7,
+    "name": "Express.js",
+    "level": "Beginner",
+    "category": "Backend"
+  },
+  {
+    "id": 8,
+    "name": "MySQL",
+    "level": "Intermediate",
+    "category": "Database"
+  },
+  {
+    "id": 9,
+    "name": "Git & GitHub",
+    "level": "Intermediate",
+    "category": "Tools"
+  },
+  {
+    "id": 10,
+    "name": "Webpack",
+    "level": "Beginner",
+    "category": "Tools"
+  }
+]

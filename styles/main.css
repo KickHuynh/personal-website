@@ -536,10 +536,38 @@ body.dark .header {
 /* --------------------------------------------------------------------------
    12. Skills Section
    -------------------------------------------------------------------------- */
+
+/* Flat grid (used as fallback / by old code) */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
+}
+
+/* Category group container */
+.skill-group {
+  margin-bottom: 36px;
+}
+
+.skill-group:last-child {
+  margin-bottom: 0;
+}
+
+.skill-group__title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-primary-soft);
+}
+
+.skill-group__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
 }
 
 .skill-card {

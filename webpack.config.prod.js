@@ -23,6 +23,7 @@ module.exports = merge(common, {
       patterns: [
         { from: 'assets',       to: 'assets'       },
         { from: 'styles',       to: 'styles'        },
+        { from: 'data',         to: 'data'          },
         { from: 'icon.svg',     to: 'icon.svg'      },
         { from: 'favicon.ico',  to: 'favicon.ico'   },
         { from: 'robots.txt',   to: 'robots.txt'    },
