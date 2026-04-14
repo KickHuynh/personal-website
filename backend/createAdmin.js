@@ -1,14 +1,20 @@
-const bcrypt = require("bcryptjs");
+﻿const bcrypt = require("bcryptjs");
+const dotenv = require("dotenv");
 const pool = require("./src/config/db");
+
+dotenv.config();
 
 async function createAdmin() {
   try {
-    const fullName = "Huynh Ngoc Tai";
-    const email = "huynhngoctai205@gmail.com";
-    const plainPassword = "admin123";
+    const fullName = process.env.ADMIN_FULL_NAME;
+    const email = process.env.ADMIN_EMAIL;
+    const plainPassword = process.env.ADMIN_PASSWORD;
+
+    if (!fullName || !email || !plainPassword) {
+      throw new Error("Thieu ADMIN_FULL_NAME, ADMIN_EMAIL hoac ADMIN_PASSWORD trong .env");
+    }
 
     const hashedPassword = await bcrypt.hash(plainPassword, 10);
-
     const sql = `
       INSERT INTO users (full_name, email, password, role)
       VALUES (?, ?, ?, ?)
@@ -18,13 +24,13 @@ async function createAdmin() {
       fullName,
       email,
       hashedPassword,
-      "admin"
+      "admin",
     ]);
 
-    console.log("Tạo admin thành công:", result.insertId);
+    console.log("Tao admin thanh cong:", result.insertId);
     process.exit();
   } catch (error) {
-    console.error("Lỗi tạo admin:", error.message);
+    console.error("Loi tao admin:", error.message);
     process.exit(1);
   }
 }

@@ -1,11 +1,11 @@
-{
+﻿{
   "name": "personal-website",
   "version": "1.0.0",
-  "description": "Portfolio cá nhân của Huỳnh Ngọc Tài — Sinh viên CNPM tại HCMUTE.",
+  "description": "Personal portfolio with case-study CMS, Express API, analytics and deploy-friendly frontend build.",
   "private": true,
-  "author": "Huỳnh Ngọc Tài <huynhngoctai205@gmail.com>",
+  "author": "Huynh Ngoc Tai <huynhngoctai205@gmail.com>",
   "license": "MIT",
-  "keywords": ["portfolio", "frontend", "personal-website"],
+  "keywords": ["portfolio", "frontend", "personal-website", "cms"],
   "scripts": {
     "dev": "webpack serve --open --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",

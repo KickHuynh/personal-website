@@ -1,20 +1,66 @@
-[
+﻿[
   {
     "id": 1,
+    "slug": "personal-portfolio-website",
     "title": "Personal Portfolio Website",
-    "description": "Website portfolio cá nhân với frontend thuần HTML/CSS/JS và backend Node.js + MySQL. Có admin panel để quản lý projects, skills và messages.",
-    "tech_stack": "HTML, CSS, JavaScript, Node.js, Express, MySQL",
+    "short_description": "Portfolio cá nhân được refactor theo hướng product-minded: có homepage public, project detail page, case study CMS và backend Node/Express riêng.",
+    "case_study_summary": "Mục tiêu của dự án không còn là một landing page đơn giản, mà là một nền portfolio có thể kể chuyện dự án rõ hơn, quản trị nội dung tốt hơn và đủ trưởng thành để deploy như một sản phẩm thật.",
+    "role": "Frontend / Full-stack developer",
+    "team_size": "Solo project",
+    "duration": "4-6 tuần và tiếp tục mở rộng",
+    "problem": "Portfolio cũ chỉ cho thấy giao diện và danh sách project ngắn. Nó chưa đủ khả năng kể case study, chưa có luồng nội dung rõ ràng giữa public site và admin, và chưa phản ánh được tư duy engineering nghiêm túc.",
+    "solution": "Mình tách website thành các lớp rõ ràng hơn: homepage để giới thiệu nhanh, project detail page để đi sâu vào từng case study, admin CMS để quản lý nội dung, và backend API để làm source-of-truth cho skills/projects/messages.",
+    "impact": "Dự án giờ thể hiện rõ hơn năng lực frontend, khả năng tổ chức content architecture, tư duy refactor codebase cũ và hướng phát triển portfolio theo chuẩn đi thực tập/xin việc.",
+    "architecture": "Frontend dùng HTML/CSS/JavaScript module hóa, webpack để build, backend Node/Express + MySQL cho API và admin authentication. Public site dùng API-first nhưng vẫn có static fallback để tránh blank UI khi backend offline.",
+    "tech_stack": "HTML, CSS, JavaScript, Webpack, Node.js, Express, MySQL",
     "github_url": "https://github.com/KickHuynh/personal-website",
-    "demo_url": null,
-    "image_url": null
+    "demo_url": "",
+    "image_url": "",
+    "gallery": [],
+    "challenges": [
+      "Thiết kế lại data model mà vẫn đi lên từ schema cũ của bảng projects.",
+      "Giữ public site có fallback data nhưng không làm kiến trúc bị rối nguồn dữ liệu.",
+      "Refactor admin cũ từ CRUD ngắn thành mini CMS có thể quản lý case study giàu nội dung."
+    ],
+    "learnings": [
+      "Portfolio mạnh không chỉ cần UI đẹp mà cần narrative và thông tin dự án có cấu trúc.",
+      "Khi refactor codebase, cần đi từ data model và information architecture trước rồi mới sửa UI.",
+      "Một CMS nhỏ cũng giúp project cá nhân trông giống sản phẩm thật hơn rất nhiều."
+    ],
+    "featured": true,
+    "status": "published",
+    "sort_order": 1
   },
   {
     "id": 2,
+    "slug": "audiogear-ecommerce",
     "title": "AudioGear E-Commerce",
-    "description": "Ứng dụng thương mại điện tử bán thiết bị âm thanh với đầy đủ chức năng: xác thực người dùng, giỏ hàng, quản lý đơn hàng và trang quản trị.",
-    "tech_stack": "Java, Spring Boot, MySQL, React",
+    "short_description": "Ứng dụng thương mại điện tử bán thiết bị âm thanh với user flow đầy đủ hơn: đăng nhập, giỏ hàng, quản lý đơn hàng và trang admin.",
+    "case_study_summary": "Đây là project thể hiện cách mình làm việc với một domain gần sản phẩm thực tế hơn: e-commerce, inventory thinking, order flow và tách vai trò giữa user-facing pages với admin-facing pages.",
+    "role": "Frontend collaborator / Full-stack learner",
+    "team_size": "Nhóm học tập",
+    "duration": "Theo học kỳ",
+    "problem": "Một ứng dụng e-commerce không chỉ là trang sản phẩm. Nó cần luồng user rõ ràng, quản lý trạng thái đơn hàng, phân quyền và khả năng mở rộng khi số lượng tính năng tăng lên.",
+    "solution": "Project được tổ chức theo hướng có backend xử lý nghiệp vụ và frontend phục vụ trải nghiệm mua hàng. Các tính năng chính gồm authentication, cart, order management và admin quản trị nội dung/đơn hàng.",
+    "impact": "Dự án giúp mình va chạm với nhiều khái niệm thực tế hơn so với portfolio site: state phức tạp hơn, dữ liệu nhiều hơn và yêu cầu phối hợp frontend-backend rõ rệt hơn.",
+    "architecture": "Frontend React, backend Spring Boot, database MySQL. Tập trung vào việc chia module theo domain nghiệp vụ thay vì gom tất cả vào một màn hình duy nhất.",
+    "tech_stack": "React, Java, Spring Boot, MySQL",
     "github_url": "https://github.com/KickHuynh/AudioGear-ECommerce",
-    "demo_url": null,
-    "image_url": null
+    "demo_url": "",
+    "image_url": "",
+    "gallery": [],
+    "challenges": [
+      "Giữ luồng giỏ hàng và đơn hàng nhất quán khi có nhiều trạng thái nghiệp vụ.",
+      "Tổ chức code để phần admin không lẫn với phần public storefront.",
+      "Hiểu sâu hơn cách frontend và backend phối hợp trong một product flow dài hơn landing page."
+    ],
+    "learnings": [
+      "Các project dạng product flow giúp thể hiện chiều sâu tốt hơn project chỉ có UI showcase.",
+      "Backend design và data relationships ảnh hưởng trực tiếp đến trải nghiệm frontend.",
+      "Case study mạnh cần nói rõ bài toán, user flow và trách nhiệm bản thân trong nhóm."
+    ],
+    "featured": false,
+    "status": "published",
+    "sort_order": 2
   }
 ]

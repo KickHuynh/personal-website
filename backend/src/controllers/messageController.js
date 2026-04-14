@@ -1,30 +1,34 @@
+﻿const analyticsModel = require("../models/analyticsModel");
 const messageModel = require("../models/messageModel");
+const { createHttpError } = require("../utils/httpErrors");
 
-const createMessage = async (req, res) => {
+const createMessage = async (req, res, next) => {
   try {
     const { name, email, subject, message } = req.body;
 
     if (!name || !email || !message) {
-      return res.status(400).json({
-        success: false,
-        message: "Name, email và message là bắt buộc"
-      });
+      throw createHttpError(400, "Name, email và message là bắt buộc");
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!emailRegex.test(email)) {
-      return res.status(400).json({
-        success: false,
-        message: "Email không hợp lệ"
-      });
+      throw createHttpError(400, "Email không hợp lệ");
     }
 
     const result = await messageModel.createMessage({
       name,
       email,
       subject: subject || null,
-      message
+      message,
+    });
+
+    await analyticsModel.createEvent({
+      event_type: "contact_submit",
+      page_path: req.body.page_path || "/#contact",
+      project_slug: null,
+      metadata_json: JSON.stringify({ subject: subject || "" }),
+      referrer: req.get("referer") || "",
+      user_agent: req.get("user-agent") || "",
     });
 
     return res.status(201).json({
@@ -35,66 +39,76 @@ const createMessage = async (req, res) => {
         name,
         email,
         subject: subject || null,
-        message
-      }
+        message,
+      },
     });
   } catch (error) {
-    console.error("Create message error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Lỗi server khi lưu liên hệ",
-      error: error.message
-    });
+    next(error);
   }
 };
 
-const getAllMessages = async (req, res) => {
+const getAllMessages = async (_req, res, next) => {
   try {
     const messages = await messageModel.getAllMessages();
+    const unreadCount = await messageModel.getUnreadCount();
 
     return res.status(200).json({
       success: true,
       message: "Lấy danh sách liên hệ thành công",
-      data: messages
+      data: messages,
+      meta: {
+        unread_count: unreadCount,
+      },
     });
   } catch (error) {
-    console.error("Get messages error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Lỗi server khi lấy danh sách liên hệ",
-      error: error.message
-    });
+    next(error);
   }
 };
 
-const deleteMessage = async (req, res) => {
+const updateMessageReadState = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { is_read } = req.body;
+
+    const existingMessage = await messageModel.getMessageById(id);
+    if (!existingMessage) {
+      throw createHttpError(404, "Không tìm thấy message để cập nhật");
+    }
+
+    await messageModel.updateMessageReadState(id, Boolean(is_read));
+    const updatedMessage = await messageModel.getMessageById(id);
+
+    return res.status(200).json({
+      success: true,
+      message: Boolean(is_read) ? "Đã đánh dấu đã đọc" : "Đã đánh dấu chưa đọc",
+      data: updatedMessage,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteMessage = async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await messageModel.deleteMessageById(id);
 
     if (result.affectedRows === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "Không tìm thấy message để xóa"
-      });
+      throw createHttpError(404, "Không tìm thấy message để xóa");
     }
 
     return res.status(200).json({
       success: true,
-      message: "Xóa message thành công"
+      message: "Xóa message thành công",
     });
   } catch (error) {
-    console.error("Delete message error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Lỗi server khi xóa message",
-      error: error.message
-    });
+    next(error);
   }
 };
 
 module.exports = {
   createMessage,
   getAllMessages,
-  deleteMessage
+  updateMessageReadState,
+  deleteMessage,
 };

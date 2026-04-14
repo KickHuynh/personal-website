@@ -1,46 +1,43 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin — Portfolio Huỳnh Ngọc Tài</title>
+  <title>Admin CMS | Portfolio Huỳnh Ngọc Tài</title>
 
-  <!-- Styles (main variables + admin-specific) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
   <link rel="stylesheet" href="styles/main.css" />
   <link rel="stylesheet" href="styles/admin.css" />
+  <script src="app.config.js"></script>
 </head>
 
 <body>
-
 <main class="admin-page">
-
-  <!-- ── LOGIN ─────────────────────────────────────────────────── -->
   <section class="admin-card" id="loginSection" aria-label="Đăng nhập admin">
-    <h2>Đăng nhập Admin</h2>
+    <h2>Đăng nhập Admin CMS</h2>
+    <p class="admin-intro">Quản lý case study, inbox, analytics và deploy-friendly content từ một nơi.</p>
 
     <form id="loginForm" class="admin-form" novalidate>
-      <div>
-        <label for="loginEmail">Email admin</label>
-        <input
-          type="email"
-          id="loginEmail"
-          name="email"
-          placeholder="admin@example.com"
-          autocomplete="email"
-          required
-        />
-      </div>
+      <div class="admin-form-grid admin-form-grid--compact">
+        <div>
+          <label for="loginEmail">Email admin</label>
+          <input type="email" id="loginEmail" name="email" placeholder="admin@example.com" autocomplete="email" required />
+        </div>
 
-      <div>
-        <label for="loginPassword">Mật khẩu</label>
-        <input
-          type="password"
-          id="loginPassword"
-          name="password"
-          placeholder="••••••••"
-          autocomplete="current-password"
-          required
-        />
+        <div>
+          <label for="loginPassword">Mật khẩu</label>
+          <input type="password" id="loginPassword" name="password" placeholder="••••••••" autocomplete="current-password" required />
+        </div>
       </div>
 
       <button type="submit" class="btn btn-primary">Đăng nhập</button>
@@ -48,169 +45,316 @@
     </form>
   </section>
 
-  <!-- ── DASHBOARD HEADER ───────────────────────────────────────── -->
-  <section class="admin-card hidden" id="dashboardSection" aria-label="Thông tin admin">
-    <div class="admin-actions">
-      <h2>Admin Dashboard</h2>
+  <section class="admin-card hidden" id="dashboardSection" aria-label="Tổng quan admin">
+    <div class="admin-toolbar">
+      <div>
+        <h2>Portfolio CMS Dashboard</h2>
+        <p id="adminWelcome" class="admin-intro"></p>
+      </div>
       <button id="logoutBtn" class="btn btn-outline" type="button">Đăng xuất</button>
     </div>
-    <p id="adminWelcome"></p>
+
+    <div class="admin-stats admin-stats--expanded">
+      <article class="admin-stat-card">
+        <span class="admin-stat-card__label">Projects</span>
+        <strong id="projectsCount">0</strong>
+      </article>
+      <article class="admin-stat-card">
+        <span class="admin-stat-card__label">Skills</span>
+        <strong id="skillsCount">0</strong>
+      </article>
+      <article class="admin-stat-card">
+        <span class="admin-stat-card__label">Inbox tổng</span>
+        <strong id="messagesCount">0</strong>
+      </article>
+      <article class="admin-stat-card">
+        <span class="admin-stat-card__label">Unread</span>
+        <strong id="unreadMessagesCount">0</strong>
+      </article>
+      <article class="admin-stat-card">
+        <span class="admin-stat-card__label">Page views</span>
+        <strong id="pageViewsCount">0</strong>
+      </article>
+      <article class="admin-stat-card">
+        <span class="admin-stat-card__label">Project views</span>
+        <strong id="projectViewsCount">0</strong>
+      </article>
+      <article class="admin-stat-card">
+        <span class="admin-stat-card__label">Project clicks</span>
+        <strong id="projectClicksCount">0</strong>
+      </article>
+      <article class="admin-stat-card">
+        <span class="admin-stat-card__label">Contact submits</span>
+        <strong id="contactSubmissionsCount">0</strong>
+      </article>
+    </div>
   </section>
 
-  <!-- ── PROJECTS ───────────────────────────────────────────────── -->
-  <section class="admin-card hidden" id="projectSection" aria-label="Quản lý dự án">
-    <h2>Thêm Project</h2>
+  <section class="admin-card hidden" id="analyticsSection" aria-label="Analytics dashboard">
+    <div class="admin-toolbar">
+      <div>
+        <h2>Analytics Snapshot</h2>
+        <p class="admin-intro">Theo dõi page view, project interest và recent activity từ public portfolio.</p>
+      </div>
+      <button id="refreshAnalyticsBtn" class="btn btn-outline" type="button">Làm mới analytics</button>
+    </div>
+
+    <div class="admin-analytics-grid">
+      <div class="admin-analytics-panel">
+        <h3>Top project views</h3>
+        <div id="analyticsTopProjects" class="admin-list admin-list--compact"></div>
+      </div>
+      <div class="admin-analytics-panel">
+        <h3>Recent events</h3>
+        <div id="analyticsRecentEvents" class="admin-list admin-list--compact"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="admin-card hidden" id="projectSection" aria-label="Quản lý case study">
+    <div class="admin-toolbar">
+      <div>
+        <h2 id="projectFormHeading">Tạo Case Study</h2>
+        <p class="admin-intro">Mỗi project là một content item có homepage card, detail page, publish state và preview mode.</p>
+      </div>
+      <div class="admin-actions admin-actions--tight">
+        <button id="projectCancelBtn" class="btn btn-outline hidden" type="button">Hủy chỉnh sửa</button>
+        <button id="togglePreviewBtn" class="btn btn-outline" type="button">Ẩn/Hiện preview</button>
+      </div>
+    </div>
 
     <form id="projectForm" class="admin-form" novalidate>
-      <div>
-        <label for="projectTitle">Tên dự án</label>
-        <input type="text" id="projectTitle" name="title" placeholder="Tên dự án" required />
+      <input type="hidden" id="projectId" />
+
+      <div class="admin-form-grid">
+        <div>
+          <label for="projectTitle">Tên dự án</label>
+          <input type="text" id="projectTitle" placeholder="Personal Portfolio Website" required />
+        </div>
+
+        <div>
+          <label for="projectSlug">Slug</label>
+          <input type="text" id="projectSlug" placeholder="personal-portfolio-website" required />
+        </div>
+
+        <div>
+          <label for="projectStatus">Trạng thái</label>
+          <select id="projectStatus">
+            <option value="published">Published</option>
+            <option value="draft">Draft</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="projectSortOrder">Thứ tự hiển thị</label>
+          <input type="number" id="projectSortOrder" placeholder="0" />
+        </div>
+
+        <div>
+          <label for="projectRole">Vai trò</label>
+          <input type="text" id="projectRole" placeholder="Full-stack developer" />
+        </div>
+
+        <div>
+          <label for="projectTeamSize">Quy mô team</label>
+          <input type="text" id="projectTeamSize" placeholder="Solo project / 3 người" />
+        </div>
+
+        <div>
+          <label for="projectDuration">Thời gian</label>
+          <input type="text" id="projectDuration" placeholder="6 tuần" />
+        </div>
+
+        <div>
+          <label for="projectTechStack">Tech stack</label>
+          <input type="text" id="projectTechStack" placeholder="HTML, CSS, JavaScript, Node.js" />
+        </div>
+
+        <div>
+          <label for="projectGithubUrl">GitHub URL</label>
+          <input type="url" id="projectGithubUrl" placeholder="https://github.com/..." />
+        </div>
+
+        <div>
+          <label for="projectDemoUrl">Demo URL</label>
+          <input type="url" id="projectDemoUrl" placeholder="https://..." />
+        </div>
+
+        <div>
+          <label for="projectImageUrl">Hero image URL</label>
+          <input type="url" id="projectImageUrl" placeholder="https://..." />
+        </div>
+
+        <div class="admin-checkbox-block">
+          <label class="admin-checkbox-row" for="projectFeatured">
+            <input type="checkbox" id="projectFeatured" />
+            <span>Đánh dấu Featured</span>
+          </label>
+        </div>
       </div>
-      <div>
-        <label for="projectDescription">Mô tả</label>
-        <textarea id="projectDescription" name="description" placeholder="Mô tả dự án" required></textarea>
+
+      <div class="admin-upload-row">
+        <div>
+          <label for="projectImageFile">Upload ảnh hero</label>
+          <input type="file" id="projectImageFile" accept="image/*" />
+        </div>
+        <button id="uploadProjectImageBtn" type="button" class="btn btn-outline">Upload ảnh</button>
       </div>
+      <div id="projectImageUploadStatus" class="admin-status"></div>
+      <div id="projectImagePreview" class="admin-inline-preview"></div>
+
       <div>
-        <label for="projectTechStack">Tech stack</label>
-        <input type="text" id="projectTechStack" name="tech_stack" placeholder="React, Node.js, ..." />
+        <label for="projectShortDescription">Mô tả ngắn</label>
+        <textarea id="projectShortDescription" rows="3" placeholder="Đoạn mô tả ngắn dùng cho homepage card" required></textarea>
       </div>
+
       <div>
-        <label for="projectGithubUrl">GitHub URL</label>
-        <input type="url" id="projectGithubUrl" name="github_url" placeholder="https://github.com/..." />
+        <label for="projectCaseStudySummary">Overview / Tóm tắt case study</label>
+        <textarea id="projectCaseStudySummary" rows="4" placeholder="Bối cảnh dự án, user, scope, định hướng tổng quát"></textarea>
       </div>
+
       <div>
-        <label for="projectDemoUrl">Demo URL</label>
-        <input type="url" id="projectDemoUrl" name="demo_url" placeholder="https://..." />
+        <label for="projectProblem">Problem</label>
+        <textarea id="projectProblem" rows="5" placeholder="Bài toán bạn đang giải là gì?"></textarea>
       </div>
+
       <div>
-        <label for="projectImageUrl">Image URL</label>
-        <input type="url" id="projectImageUrl" name="image_url" placeholder="https://..." />
+        <label for="projectSolution">Solution</label>
+        <textarea id="projectSolution" rows="5" placeholder="Bạn giải quyết bài toán như thế nào?"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Thêm Project</button>
+
+      <div>
+        <label for="projectImpact">Impact / Outcome</label>
+        <textarea id="projectImpact" rows="4" placeholder="Kết quả, bài học, trade-off hoặc impact"></textarea>
+      </div>
+
+      <div>
+        <label for="projectArchitecture">Architecture / Technical notes</label>
+        <textarea id="projectArchitecture" rows="4" placeholder="Kiến trúc, API flow, content strategy, deployment notes"></textarea>
+      </div>
+
+      <div class="admin-form-grid">
+        <div>
+          <label for="projectGallery">Gallery URLs</label>
+          <textarea id="projectGallery" rows="5" placeholder="Mỗi dòng là một ảnh screenshot"></textarea>
+        </div>
+
+        <div>
+          <label for="projectChallenges">Challenges</label>
+          <textarea id="projectChallenges" rows="5" placeholder="Mỗi dòng là một challenge"></textarea>
+        </div>
+
+        <div>
+          <label for="projectLearnings">Learnings</label>
+          <textarea id="projectLearnings" rows="5" placeholder="Mỗi dòng là một learning"></textarea>
+        </div>
+      </div>
+
+      <div class="admin-actions">
+        <button id="projectSubmitBtn" type="submit" class="btn btn-primary">Lưu Case Study</button>
+        <a class="btn btn-outline" href="index.html#projects">Xem public site</a>
+      </div>
+
       <p id="projectMessage" class="admin-status" aria-live="polite"></p>
     </form>
 
+    <section class="admin-preview-grid" id="previewSection">
+      <article class="admin-preview-panel">
+        <div class="admin-toolbar admin-toolbar--compact">
+          <div>
+            <h3>Homepage card preview</h3>
+            <p class="admin-intro">Preview project card trên landing page.</p>
+          </div>
+        </div>
+        <div id="projectCardPreview"></div>
+      </article>
+
+      <article class="admin-preview-panel">
+        <div class="admin-toolbar admin-toolbar--compact">
+          <div>
+            <h3>Detail page preview</h3>
+            <p class="admin-intro">Preview phần đầu của project detail page ngay trong CMS.</p>
+          </div>
+        </div>
+        <div id="projectDetailPreview"></div>
+      </article>
+    </section>
+
     <hr class="admin-divider" />
 
-    <div class="admin-actions">
-      <h2>Danh sách Project</h2>
+    <div class="admin-toolbar">
+      <div>
+        <h2>Danh sách Case Study</h2>
+        <p class="admin-intro">Quick actions cho draft/publish, featured và edit nội dung.</p>
+      </div>
       <button id="loadProjectsBtn" class="btn btn-outline" type="button">Tải Project</button>
     </div>
+
     <p id="projectListStatus" class="admin-status" aria-live="polite"></p>
     <div id="adminProjectsList" class="admin-list"></div>
   </section>
 
-  <!-- ── EDIT PROJECT ───────────────────────────────────────────── -->
-  <section class="admin-card hidden" id="editProjectSection" aria-label="Chỉnh sửa dự án">
-    <h2>Sửa Project</h2>
+  <section class="admin-card hidden" id="skillSection" aria-label="Quản lý kỹ năng">
+    <div class="admin-toolbar">
+      <div>
+        <h2 id="skillFormHeading">Thêm Skill</h2>
+        <p class="admin-intro">Dùng một form cho cả create và edit để workflow gọn hơn.</p>
+      </div>
+      <button id="skillCancelBtn" class="btn btn-outline hidden" type="button">Hủy chỉnh sửa</button>
+    </div>
 
-    <form id="editProjectForm" class="admin-form" novalidate>
-      <input type="hidden" id="editProjectId" />
-      <div>
-        <label for="editProjectTitle">Tên dự án</label>
-        <input type="text" id="editProjectTitle" name="title" placeholder="Tên dự án" required />
-      </div>
-      <div>
-        <label for="editProjectDescription">Mô tả</label>
-        <textarea id="editProjectDescription" name="description" placeholder="Mô tả dự án" required></textarea>
-      </div>
-      <div>
-        <label for="editProjectTechStack">Tech stack</label>
-        <input type="text" id="editProjectTechStack" name="tech_stack" placeholder="React, Node.js, ..." />
-      </div>
-      <div>
-        <label for="editProjectGithubUrl">GitHub URL</label>
-        <input type="url" id="editProjectGithubUrl" name="github_url" placeholder="https://github.com/..." />
-      </div>
-      <div>
-        <label for="editProjectDemoUrl">Demo URL</label>
-        <input type="url" id="editProjectDemoUrl" name="demo_url" placeholder="https://..." />
-      </div>
-      <div>
-        <label for="editProjectImageUrl">Image URL</label>
-        <input type="url" id="editProjectImageUrl" name="image_url" placeholder="https://..." />
+    <form id="skillForm" class="admin-form" novalidate>
+      <input type="hidden" id="skillId" />
+
+      <div class="admin-form-grid admin-form-grid--compact">
+        <div>
+          <label for="skillName">Tên kỹ năng</label>
+          <input type="text" id="skillName" placeholder="JavaScript" required />
+        </div>
+
+        <div>
+          <label for="skillLevel">Mức độ</label>
+          <input type="text" id="skillLevel" placeholder="Intermediate" />
+        </div>
+
+        <div>
+          <label for="skillCategory">Danh mục</label>
+          <input type="text" id="skillCategory" placeholder="Frontend" />
+        </div>
       </div>
 
       <div class="admin-actions">
-        <button type="submit" class="btn btn-primary">Cập nhật Project</button>
-        <button type="button" id="cancelEditProjectBtn" class="btn btn-outline">Hủy</button>
+        <button id="skillSubmitBtn" type="submit" class="btn btn-primary">Lưu Skill</button>
       </div>
-      <p id="editProjectMessage" class="admin-status" aria-live="polite"></p>
-    </form>
-  </section>
 
-  <!-- ── SKILLS ─────────────────────────────────────────────────── -->
-  <section class="admin-card hidden" id="skillSection" aria-label="Quản lý kỹ năng">
-    <h2>Thêm Skill</h2>
-
-    <form id="skillForm" class="admin-form" novalidate>
-      <div>
-        <label for="skillName">Tên kỹ năng</label>
-        <input type="text" id="skillName" name="name" placeholder="JavaScript" required />
-      </div>
-      <div>
-        <label for="skillLevel">Mức độ</label>
-        <input type="text" id="skillLevel" name="level" placeholder="Intermediate" />
-      </div>
-      <div>
-        <label for="skillCategory">Danh mục</label>
-        <input type="text" id="skillCategory" name="category" placeholder="Frontend" />
-      </div>
-      <button type="submit" class="btn btn-primary">Thêm Skill</button>
       <p id="skillMessage" class="admin-status" aria-live="polite"></p>
     </form>
 
     <hr class="admin-divider" />
 
-    <div class="admin-actions">
+    <div class="admin-toolbar">
       <h2>Danh sách Skill</h2>
       <button id="loadSkillsBtn" class="btn btn-outline" type="button">Tải Skill</button>
     </div>
+
     <p id="skillListStatus" class="admin-status" aria-live="polite"></p>
     <div id="adminSkillsList" class="admin-list"></div>
   </section>
 
-  <!-- ── EDIT SKILL ─────────────────────────────────────────────── -->
-  <section class="admin-card hidden" id="editSkillSection" aria-label="Chỉnh sửa kỹ năng">
-    <h2>Sửa Skill</h2>
-
-    <form id="editSkillForm" class="admin-form" novalidate>
-      <input type="hidden" id="editSkillId" />
-      <div>
-        <label for="editSkillName">Tên kỹ năng</label>
-        <input type="text" id="editSkillName" name="name" placeholder="JavaScript" required />
-      </div>
-      <div>
-        <label for="editSkillLevel">Mức độ</label>
-        <input type="text" id="editSkillLevel" name="level" placeholder="Intermediate" />
-      </div>
-      <div>
-        <label for="editSkillCategory">Danh mục</label>
-        <input type="text" id="editSkillCategory" name="category" placeholder="Frontend" />
-      </div>
-
-      <div class="admin-actions">
-        <button type="submit" class="btn btn-primary">Cập nhật Skill</button>
-        <button type="button" id="cancelEditSkillBtn" class="btn btn-outline">Hủy</button>
-      </div>
-      <p id="editSkillMessage" class="admin-status" aria-live="polite"></p>
-    </form>
-  </section>
-
-  <!-- ── MESSAGES ───────────────────────────────────────────────── -->
   <section class="admin-card hidden" id="messageSection" aria-label="Danh sách lời nhắn">
-    <div class="admin-actions">
-      <h2>Danh sách lời nhắn</h2>
+    <div class="admin-toolbar">
+      <div>
+        <h2>Inbox</h2>
+        <p class="admin-intro">Theo dõi message, unread count và xử lý inbox theo workflow read/unread.</p>
+      </div>
       <button id="loadMessagesBtn" class="btn btn-outline" type="button">Tải lời nhắn</button>
     </div>
+
     <p id="messageStatus" class="admin-status" aria-live="polite"></p>
     <div id="messagesList" class="admin-list"></div>
   </section>
-
 </main>
 
-<!-- Script (type=module for ES import support) -->
 <script type="module" src="scripts/admin.js"></script>
-
 </body>
 </html>

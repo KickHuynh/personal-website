@@ -1,72 +1,56 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!--
-    🚀 DEPLOY: Uncomment and set your production API URL below.
-    This replaces the localhost fallback in scripts/config.js
-    without needing to change any JS files.
-
+    DEPLOY:
     <meta name="api-base" content="https://your-api.railway.app/api" />
   -->
 
-  <!-- SEO -->
   <title>Huỳnh Ngọc Tài | Portfolio</title>
   <meta
     name="description"
-    content="Portfolio cá nhân của Huỳnh Ngọc Tài - Sinh viên Công nghệ Phần Mềm, định hướng Developer và Project Manager."
+    content="Portfolio cá nhân của Huỳnh Ngọc Tài với featured projects, project detail page và case study CMS riêng."
   />
+  <link rel="manifest" href="site.webmanifest" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-
-  <!-- Icons -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/main.css" />`r`n  <script src="app.config.js"></script>
 </head>
 
 <body>
 
-<!-- Background decorative blurs -->
 <div class="bg-blur bg-blur--1" aria-hidden="true"></div>
 <div class="bg-blur bg-blur--2" aria-hidden="true"></div>
 
-<!-- ================================================================
-     HEADER
-     ================================================================ -->
 <header class="header" id="header">
   <div class="container nav-container">
-
-    <!-- Logo -->
     <a href="#home" class="logo" aria-label="Về trang chủ">
       <span class="logo-dot" aria-hidden="true"></span>
       Tai<span>Portfolio</span>
     </a>
 
-    <!-- Desktop navigation -->
     <nav class="nav-menu" id="navMenu" aria-label="Điều hướng chính">
-      <a href="#home"     class="nav-link active">Trang chủ</a>
-      <a href="#about"    class="nav-link">Giới thiệu</a>
-      <a href="#skills"   class="nav-link">Kỹ năng</a>
+      <a href="#home" class="nav-link active">Trang chủ</a>
+      <a href="#about" class="nav-link">Giới thiệu</a>
+      <a href="#skills" class="nav-link">Kỹ năng</a>
       <a href="#projects" class="nav-link">Dự án</a>
-      <a href="#contact"  class="nav-link">Liên hệ</a>
+      <a href="#contact" class="nav-link">Liên hệ</a>
     </nav>
 
-    <!-- Action buttons -->
     <div class="nav-actions">
-      <!-- Theme toggle -->
       <button
         class="theme-toggle"
         id="themeToggle"
@@ -76,7 +60,6 @@
         <i class="fa-solid fa-moon" aria-hidden="true"></i>
       </button>
 
-      <!-- Hamburger (mobile only) -->
       <button
         class="menu-toggle"
         id="menuToggle"
@@ -90,39 +73,29 @@
         <span class="menu-toggle__bar" aria-hidden="true"></span>
       </button>
     </div>
-
   </div>
 </header>
 
-<!-- ================================================================
-     MAIN CONTENT
-     ================================================================ -->
 <main>
-
-  <!-- ── HERO ───────────────────────────────────────────────────── -->
   <section class="hero section" id="home" aria-label="Giới thiệu nhanh">
     <div class="container hero-content">
-
-      <!-- Left: text -->
       <div class="hero-text reveal">
         <p class="hero-tag">Xin chào, tôi là</p>
-
         <h1>Huỳnh Ngọc Tài</h1>
-
         <h2>
-          Sinh viên Công nghệ Phần Mềm —
+          Sinh viên Công nghệ Phần mềm —
           <span class="typing-text" id="typingText">Developer</span>
         </h2>
 
         <p class="hero-desc">
-          Tôi đang học tại Đại học Công nghệ Kỹ thuật TP.HCM, yêu thích xây dựng
-          website, phát triển kỹ năng lập trình và hướng đến con đường
-          <strong>Developer</strong> cũng như <strong>Project Manager</strong> trong tương lai.
+          Mình đang xây dựng portfolio này như một sản phẩm thật: có homepage public, project detail page,
+          case study CMS, backend API và quy trình triển khai rõ ràng. Mục tiêu là thể hiện không chỉ kỹ năng làm UI,
+          mà cả tư duy sản phẩm, cách tổ chức nội dung và khả năng ship end-to-end.
         </p>
 
         <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary">Xem dự án</a>
-          <a href="#contact"  class="btn btn-outline">Liên hệ</a>
+          <a href="#projects" class="btn btn-primary">Xem case studies</a>
+          <a href="#contact" class="btn btn-outline">Liên hệ</a>
         </div>
 
         <div class="hero-socials">
@@ -148,7 +121,6 @@
         </div>
       </div>
 
-      <!-- Right: profile card -->
       <div class="hero-card reveal delay-1">
         <div class="profile-card">
           <div class="avatar">
@@ -165,7 +137,7 @@
           <div class="mini-info">
             <div class="mini-item">
               <span class="mini-label">Mục tiêu</span>
-              <strong>Developer / PM</strong>
+              <strong>Frontend / Full-stack</strong>
             </div>
             <div class="mini-item">
               <span class="mini-label">Trường</span>
@@ -173,42 +145,34 @@
             </div>
             <div class="mini-item">
               <span class="mini-label">Định hướng</span>
-              <strong>Frontend &amp; Web</strong>
+              <strong>Product-minded builder</strong>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ── ABOUT ──────────────────────────────────────────────────── -->
   <section class="about section" id="about" aria-label="Giới thiệu bản thân">
     <div class="container">
-
       <div class="section-heading reveal">
         <p class="section-tag">Giới thiệu</p>
-        <h2>Về bản thân tôi</h2>
+        <h2>Không chỉ làm web đẹp, mà còn muốn xây web có cấu trúc và chiều sâu</h2>
       </div>
 
       <div class="about-content">
-
         <div class="about-text card reveal">
           <p>
-            Tôi là <strong>Huỳnh Ngọc Tài</strong>, sinh viên ngành
-            <strong>Công nghệ Phần Mềm</strong> tại
-            <strong>Đại học Công nghệ Kỹ thuật TP.HCM</strong>.
+            Mình là <strong>Huỳnh Ngọc Tài</strong>, sinh viên ngành <strong>Công nghệ Phần mềm</strong>
+            tại <strong>Đại học Công nghệ Kỹ thuật TP.HCM</strong>.
           </p>
           <p>
-            Tôi yêu thích việc học lập trình web, xây dựng giao diện thân thiện
-            với người dùng và từng bước phát triển tư duy làm việc bài bản trong
-            quá trình học tập.
+            Portfolio này được dùng như một sandbox để luyện cả 3 hướng cùng lúc:
+            frontend presentation, backend/API thinking và content architecture cho một sản phẩm cá nhân.
           </p>
           <p>
-            Mục tiêu hiện tại của tôi là trở thành một <strong>Developer</strong>
-            có nền tảng tốt, đồng thời rèn luyện thêm kỹ năng quản lý, phối hợp
-            và tổ chức công việc để phát triển theo định hướng
-            <strong>Project Manager</strong> trong tương lai.
+            Mình muốn khi người khác xem site này, họ không chỉ thấy một landing page,
+            mà thấy được cách mình kể câu chuyện dự án, cách tổ chức dữ liệu và cách nâng dần một prototype thành sản phẩm có thể deploy.
           </p>
         </div>
 
@@ -216,73 +180,60 @@
           <div class="info-card card">
             <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
             <h3>Học tập</h3>
-            <p>Sinh viên Công nghệ Phần Mềm, tập trung vào lập trình web và phát triển dự án học tập.</p>
+            <p>Tập trung vào web engineering, thực hành từ UI đến API và cách trình bày dự án như một case study rõ ràng.</p>
           </div>
 
           <div class="info-card card">
             <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
             <h3>Định hướng</h3>
-            <p>Phát triển kỹ năng frontend, JavaScript, responsive design và quy trình làm việc thực tế.</p>
+            <p>Rèn frontend foundation, modular JavaScript, deploy flow và tư duy làm sản phẩm thay vì chỉ hoàn thành tính năng.</p>
           </div>
 
           <div class="info-card card">
             <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
             <h3>Mục tiêu</h3>
-            <p>Xây dựng nền tảng tốt để trở thành Developer và tiến xa hơn tới vai trò Project Manager.</p>
+            <p>Xây một portfolio đủ mạnh để đi thực tập, đồng thời là nơi tiếp tục nâng cấp kỹ năng full-stack nghiêm túc.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ── SKILLS ─────────────────────────────────────────────────── -->
   <section class="skills section" id="skills" aria-label="Kỹ năng">
     <div class="container">
-
       <div class="section-heading reveal">
         <p class="section-tag">Kỹ năng</p>
-        <h2>Những công cụ và kỹ năng mình đang sử dụng</h2>
+        <h2>Những công cụ và nền tảng mình đang dùng để xây sản phẩm</h2>
       </div>
 
-      <!-- Populated dynamically by app.js -->
       <div class="skills-grid" id="skillsList" aria-live="polite"></div>
-
     </div>
   </section>
 
-  <!-- ── PROJECTS ───────────────────────────────────────────────── -->
   <section class="projects section" id="projects" aria-label="Dự án">
     <div class="container">
-
       <div class="section-heading reveal">
-        <p class="section-tag">Dự án</p>
-        <h2>Một số sản phẩm mình đã thực hiện</h2>
+        <p class="section-tag">Case Studies</p>
+        <h2>Featured projects và project detail page mình đang phát triển thành portfolio có chiều sâu hơn</h2>
       </div>
 
-      <!-- Populated dynamically by app.js -->
       <div class="projects-grid" id="projectsList" aria-live="polite"></div>
-
     </div>
   </section>
 
-  <!-- ── CONTACT ────────────────────────────────────────────────── -->
   <section class="contact section" id="contact" aria-label="Liên hệ">
     <div class="container">
-
       <div class="section-heading reveal">
         <p class="section-tag">Liên hệ</p>
-        <h2>Kết nối với tôi</h2>
+        <h2>Kết nối với mình</h2>
       </div>
 
       <div class="contact-layout">
-
-        <!-- Contact info -->
         <div class="contact-info card reveal">
           <h3>Thông tin liên hệ</h3>
           <p>
-            Tôi luôn sẵn sàng học hỏi, trao đổi và kết nối về các chủ đề liên quan đến
-            lập trình web, dự án học tập và định hướng phát triển nghề nghiệp.
+            Mình luôn sẵn sàng trao đổi về frontend, portfolio engineering, project case study
+            hoặc cơ hội thực tập liên quan đến software engineering.
           </p>
 
           <address class="contact-list">
@@ -320,7 +271,6 @@
           </address>
         </div>
 
-        <!-- Contact form -->
         <div class="contact-form-card card reveal delay-1">
           <h3>Gửi lời nhắn</h3>
 
@@ -371,31 +321,21 @@
             </div>
 
             <button type="submit" class="btn btn-primary btn-full">Gửi lời nhắn</button>
-
-            <!-- JS will populate this element -->
             <p class="form-message" id="formMessage" aria-live="polite"></p>
           </form>
         </div>
-
       </div>
     </div>
   </section>
-
 </main>
 
-<!-- ================================================================
-     FOOTER
-     ================================================================ -->
 <footer class="footer">
   <div class="container footer-container">
-    <p>
-      &copy; <span id="currentYear"></span> Huỳnh Ngọc Tài. All Rights Reserved.
-    </p>
+    <p>&copy; <span id="currentYear"></span> Huỳnh Ngọc Tài. All Rights Reserved.</p>
     <a href="#home" class="footer-top">Lên đầu trang ↑</a>
   </div>
 </footer>
 
-<!-- Back to top button -->
 <button
   class="back-to-top"
   id="backToTop"
@@ -405,8 +345,7 @@
   <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </button>
 
-<!-- Scripts (type=module for ES import support) -->
 <script type="module" src="scripts/app.js"></script>
-
 </body>
 </html>
+

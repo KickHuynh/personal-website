@@ -615,11 +615,11 @@ body.dark .header {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 24px;
   box-shadow: var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .project-card:hover {
@@ -627,17 +627,77 @@ body.dark .header {
   box-shadow: var(--shadow-hover);
 }
 
+.project-card__media {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.16));
+  overflow: hidden;
+}
+
+.project-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-card__media--placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--color-primary);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-card__content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+}
+
+.project-card__top {
+  display: grid;
+  gap: 10px;
+}
+
+.project-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .project-title {
   font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 10px;
 }
 
 .project-description {
   color: var(--color-text-soft);
-  margin-bottom: 12px;
   line-height: 1.6;
-  flex: 1;
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--color-text-soft);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.project-meta span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--color-surface-2);
 }
 
 .project-tech {
@@ -658,6 +718,187 @@ body.dark .header {
   min-width: unset;
   padding: 10px 18px;
   font-size: 14px;
+}
+
+.tech-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   13b. Project Detail Page
+   -------------------------------------------------------------------------- */
+.project-detail-page {
+  padding-top: 120px;
+}
+
+.project-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+  color: var(--color-text-soft);
+  font-size: 14px;
+}
+
+.project-breadcrumbs a:hover {
+  color: var(--color-primary);
+}
+
+.project-hero-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 28px;
+  align-items: stretch;
+  margin-bottom: 28px;
+}
+
+.project-hero-detail__content,
+.project-hero__media {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.project-hero-detail__content {
+  padding: 32px;
+}
+
+.project-hero-detail__content h1 {
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.project-hero-detail__summary {
+  font-size: 18px;
+  color: var(--color-text-soft);
+  margin-bottom: 20px;
+}
+
+.project-link-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.project-hero__media {
+  overflow: hidden;
+  min-height: 360px;
+}
+
+.project-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-hero__media--placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.16));
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.project-fact {
+  padding: 18px 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+.project-fact__label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text-soft);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-detail-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.project-section {
+  padding: 28px;
+}
+
+.project-section__heading {
+  margin-bottom: 14px;
+}
+
+.project-section__body {
+  display: grid;
+  gap: 14px;
+}
+
+.project-copy {
+  color: var(--color-text-soft);
+}
+
+.detail-list {
+  list-style: disc;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
+  color: var(--color-text-soft);
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.project-gallery__item {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.project-gallery__item img {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  object-fit: cover;
+}
+
+.detail-state {
+  padding: 28px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-text-soft);
 }
 
 /* --------------------------------------------------------------------------
@@ -892,7 +1133,8 @@ body.dark .header {
 @media (max-width: 1024px) {
   .hero-content,
   .about-content,
-  .contact-layout {
+  .contact-layout,
+  .project-hero-detail {
     grid-template-columns: 1fr;
   }
 
@@ -957,6 +1199,11 @@ body.dark .header {
     grid-template-columns: 1fr;
   }
 
+  .project-link-group,
+  .project-links {
+    flex-direction: column;
+  }
+
   .hero-text h1 {
     font-size: 42px;
   }
@@ -1004,6 +1251,7 @@ body.dark .header {
   .info-card,
   .skill-card,
   .project-card,
+  .project-section,
   .contact-info,
   .contact-form-card {
     padding: 20px;
@@ -1011,6 +1259,10 @@ body.dark .header {
 
   .profile-card {
     padding: 26px 20px;
+  }
+
+  .project-hero-detail__content {
+    padding: 24px 20px;
   }
 
   .nav-menu {

@@ -1,46 +1,20 @@
-/**
- * modules/skills.js
- * Load and render the skills section, grouped by category.
- *
- * Data strategy (same as projects.js):
- *  1. Live API  → `${API_BASE}/skills`
- *  2. Static    → `./data/skills.json`
- */
-
-import { API_BASE, ENABLE_STATIC_FALLBACK, API_TIMEOUT_MS } from "../config.js";
+﻿import { ENABLE_STATIC_FALLBACK } from "../config.js";
+import { apiUrl, requestJson } from "./http.js";
 
 const STATIC_DATA_URL = "./data/skills.json";
 
-/* ------------------------------------------------------------------
-   Data fetching
-   ------------------------------------------------------------------ */
-
 async function fetchFromApi() {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
-
-  try {
-    const response = await fetch(`${API_BASE}/skills`, {
-      signal: controller.signal,
-    });
-
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-    const result = await response.json();
-    if (!result.success || !Array.isArray(result.data)) {
-      throw new Error("Invalid API response shape");
-    }
-
-    return result.data;
-  } finally {
-    clearTimeout(timeoutId);
+  const result = await requestJson(apiUrl("/skills"));
+  if (!Array.isArray(result?.data)) {
+    throw new Error("Invalid API response shape");
   }
+  return result.data;
 }
 
 async function fetchFromStatic() {
   const response = await fetch(STATIC_DATA_URL);
   if (!response.ok) throw new Error(`Static data not found: ${response.status}`);
-  return await response.json();
+  return response.json();
 }
 
 async function loadSkillData() {
@@ -49,38 +23,19 @@ async function loadSkillData() {
   } catch (apiError) {
     if (!ENABLE_STATIC_FALLBACK) throw apiError;
     console.warn("[skills] API unavailable, using static fallback:", apiError.message);
-    return await fetchFromStatic();
+    return fetchFromStatic();
   }
 }
 
-/* ------------------------------------------------------------------
-   Grouping
-   ------------------------------------------------------------------ */
-
-/**
- * Group flat skills array by their category.
- * Skills without a category go into "Khác".
- * @param {Array} skills
- * @returns {Object} { [category]: skill[] }
- */
 function groupByCategory(skills) {
   return skills.reduce((groups, skill) => {
-    const key = skill.category?.trim() || "Khác";
+    const key = skill.category?.trim() || "Khac";
     if (!groups[key]) groups[key] = [];
     groups[key].push(skill);
     return groups;
   }, {});
 }
 
-/* ------------------------------------------------------------------
-   Rendering
-   ------------------------------------------------------------------ */
-
-/**
- * Render a single skill card.
- * @param {Object} skill
- * @returns {string}
- */
 function renderSkillCard(skill) {
   return `
     <article class="skill-card">
@@ -90,12 +45,6 @@ function renderSkillCard(skill) {
   `;
 }
 
-/**
- * Render a category group (heading + cards grid).
- * @param {string} category
- * @param {Array} skills
- * @returns {string}
- */
 function renderCategoryGroup(category, skills) {
   return `
     <div class="skill-group">
@@ -107,25 +56,17 @@ function renderCategoryGroup(category, skills) {
   `;
 }
 
-/* ------------------------------------------------------------------
-   Public API
-   ------------------------------------------------------------------ */
-
-/**
- * Initialize the skills section: fetch, group by category, and render.
- * @param {string} [containerId="skillsList"]
- */
 export async function initSkills(containerId = "skillsList") {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  container.innerHTML = `<p class="state-message">Đang tải kỹ năng...</p>`;
+  container.innerHTML = '<p class="state-message">Dang tai ky nang...</p>';
 
   try {
     const skills = await loadSkillData();
 
     if (skills.length === 0) {
-      container.innerHTML = `<p class="state-message">Chưa có kỹ năng nào.</p>`;
+      container.innerHTML = '<p class="state-message">Chua co ky nang nao.</p>';
       return;
     }
 
@@ -135,6 +76,6 @@ export async function initSkills(containerId = "skillsList") {
       .join("");
   } catch (error) {
     console.error("[skills] Load error:", error);
-    container.innerHTML = `<p class="state-message">Không thể tải kỹ năng.</p>`;
+    container.innerHTML = '<p class="state-message">Khong the tai ky nang.</p>';
   }
 }
